@@ -1,8 +1,18 @@
+import 'dotenv/config.js'
 import express from 'express'
 import cors from 'cors'
 import routes from './routes.js'
 import { handle404, logErrors, handleErrors } from './handleErrors.js'
 import limiter from './rateLimit.js'
+import MongoClient from './MongoClient.js'
+
+const isVercelDeployment = process.env.IS_VERCEL_DEPLOYMENT || false
+
+if (isVercelDeployment) {
+  const db = new MongoClient()
+  db.connect()
+}
+
 /** The Express app */
 const app = express()
 app.use(cors())
