@@ -34,3 +34,4 @@ yarn.lock
 
 # jetbrains
 .idea/
+.vercel
